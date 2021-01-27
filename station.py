@@ -7,8 +7,6 @@ for manipulating/modifying station data
 """
 
 
-
-
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -40,11 +38,11 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
-    
+
     def relative_water_level(self):
         try:
-            return ((self.latest_level - self.typical_range[0])/(self.typical_range[1] - self.typical_range[0]))
-        except:
+            return ((self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0]))
+        except Error:
             return None
 
 
