@@ -17,6 +17,4 @@ def run():
     print(My_list)
 
 
-if __name__ == "__main__":
-    print("*** Task 1B: CUED Part IA Flood Warning System ***")
-    run()
+run()
