@@ -10,7 +10,7 @@ def run():
     stations_2 = stations_by_distance(stations, (52.2053, 0.1218))
     for station_tuple in stations_2:
         list_tuple.append((station_tuple[0].name, station_tuple[0].town, station_tuple[1]))
-    #append to the list the first and last ten tuples by distance
+    # append to the list the first and last ten tuples by distance
     My_list.append(list_tuple[:11])
     My_list.append(list_tuple[-10:])
 
