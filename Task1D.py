@@ -11,7 +11,6 @@ def run():
     list_of_rivers.sort()
     """print the first ten rivers in alphabetical order"""
     print(list_of_rivers[:10])
-    
 
     """print all the stations on one specific river"""
     my_dict = stations_by_river(stations)
@@ -21,4 +20,3 @@ def run():
 
 
 run()
-
