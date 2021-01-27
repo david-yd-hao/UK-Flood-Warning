@@ -1,5 +1,4 @@
 from floodsystem.stationdata import build_station_list
-from floodsystem.geo import stations_by_distance
 from floodsystem.geo import stations_within_radius
 
 
@@ -14,7 +13,8 @@ def run():
         names_of_stations.append(i[0].name)
     """sort in alphabetical order"""
     names_of_stations.sort()
-    
+
     print(names_of_stations)
+
 
 run()
