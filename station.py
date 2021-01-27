@@ -42,8 +42,5 @@ class MonitoringStation:
     def relative_water_level(self):
         try:
             return ((self.latest_level - self.typical_range[0]) / (self.typical_range[1] - self.typical_range[0]))
-        except Exception as error:
+        except Exception:
             return None
-
-
-
