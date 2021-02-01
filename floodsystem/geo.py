@@ -8,6 +8,7 @@ geographical data.
 
 from floodsystem.utils import sorted_by_key  # noqa
 import math
+
 """find the distance between the two points using the haversine formula"""
 
 
@@ -78,4 +79,31 @@ def stations_by_river(stations):
             if i.river == river:
                 list2.append(i.name)
         my_dict[river] = list2
-    return(my_dict)
+    return (my_dict)
+
+
+def rivers_by_station_number(stations, N):
+    # determines the N rivers with the greatest number of monitoring stations.
+    # Return a list of (river name, number of stations) tuples, sorted by the number of stations.
+
+    # Create a dictionary with key:river, value:number of list.
+    stations_by_river_dict = stations_by_river(stations)
+    rivers_station_num_dict = {}
+    for key in stations_by_river_dict:
+        rivers_station_num_dict[key] = len(stations_by_river_dict[key])
+
+    # Determine Nth value in greatest number of monitoring stations.
+    station_number_list = list(rivers_station_num_dict.values())
+    station_number_list.sort(reverse=True)
+    last_station_number = station_number_list[N - 1]
+
+    # Make the output list of tuples.
+    output_list = []
+    for i in rivers_station_num_dict.keys():
+        if rivers_station_num_dict[i] >= last_station_number:
+            output_list.append((i, rivers_station_num_dict[i]))
+
+    # Sort the output list of tuples.
+    output_list.sort(key=lambda tup: tup[1], reverse=True)
+    return output_list
+
