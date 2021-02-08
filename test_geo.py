@@ -1,6 +1,5 @@
 """Unit test for the geo module"""
 
-from floodsystem.station import MonitoringStation
 from floodsystem.geo import rivers_by_station_number
 from floodsystem.stationdata import build_station_list
 
