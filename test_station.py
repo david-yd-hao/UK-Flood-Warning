@@ -33,7 +33,7 @@ def test_typical_range_consistent():
     label = "some station"
     coord = (-2.0, 4.0)
     # High and Low typical ranges are the same
-    trange = (2, 2)
+    trange = (3, 2)
     river = "River X"
     town = "My Town"
     s = MonitoringStation(s_id, m_id, label, coord, trange, river, town)
