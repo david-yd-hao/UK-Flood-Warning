@@ -1,9 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-
 from floodsystem.Analysis import polyfit
-from floodsystem.station import MonitoringStation
 
 
 def plot_water_levels(station, dates, levels):
@@ -28,6 +26,7 @@ def plot_water_levels(station, dates, levels):
 
 
 def plot_water_level_with_fit(station, dates, levels, p):
+
     typical_high = station.typical_range[1]
     typical_low = station.typical_range[0]
 
@@ -38,18 +37,21 @@ def plot_water_level_with_fit(station, dates, levels, p):
 
     poly_tuple = polyfit(dates, levels, p)
 
-    # Plot polynomial fit at 30 points along interval (note that polynomial
-    # is evaluated using the shift x)
-    x1 = np.linspace(dates_float[0], dates_float[-1], 30)
-    plt.plot(x1, poly_tuple[0](x1 - dates_float[0]))
+    if poly_tuple is None:
+        print("invalid Tuple")
+    else:
+        # Plot polynomial fit at 30 points along interval (note that polynomial
+        # is evaluated using the shift x)
+        x1 = np.linspace(dates_float[0], dates_float[-1], 30)
+        plt.plot(x1, poly_tuple[0](x1 - dates_float[0]))
 
-    plt.xlabel('date')
-    plt.ylabel('water level (m)')
-    plt.xticks(rotation=45);
-    plt.title(station.name)
+        plt.xlabel('date')
+        plt.ylabel('water level (m)')
+        plt.xticks(rotation=45);
+        plt.title(station.name)
 
-    # Display plot
-    plt.tight_layout()  # This makes sure plot does not cut off date labels
+        # Display plot
+        plt.tight_layout()  # This makes sure plot does not cut off date labels
 
-    # Display plot
-    plt.show()
+        # Display plot
+        plt.show()
