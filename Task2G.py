@@ -1,7 +1,7 @@
 from floodsystem.Analysis import polyfit
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.flood import stations_level_over_threshold
-from datetime import datetime, timedelta
+from datetime import timedelta
 from floodsystem.stationdata import build_station_list, update_water_levels
 import matplotlib.dates
 
@@ -27,7 +27,7 @@ def run():
         # Check if levels is a valid float list
         for j in range(0, len(levels)):
             if not isinstance(levels[j], float):
-                levels[j] = levels[j-1]
+                levels[j]=levels[j-1]
 
         poly_tuple = polyfit(dates, levels, 5)
         dates_float = matplotlib.dates.date2num(dates)

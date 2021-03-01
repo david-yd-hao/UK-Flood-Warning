@@ -18,7 +18,7 @@ def run():
         # Check if levels is a valid float list
         for j in range(0, len(levels)):
             if not isinstance(levels[j], float):
-                levels[j] = levels[j-1]
+                levels[j] = levels[j - 1]
 
         plot_water_levels(s, dates, levels)
 
