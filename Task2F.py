@@ -1,6 +1,4 @@
-from floodsystem.Analysis import polyfit
 from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.station import MonitoringStation
 from floodsystem.plot import plot_water_level_with_fit
 from datetime import datetime, timedelta
 from floodsystem.stationdata import build_station_list, update_water_levels
@@ -9,7 +7,6 @@ from floodsystem.flood import stations_highest_rel_level
 
 def run():
     stations = build_station_list()
-    increasing_stations = []
     update_water_levels(stations)
     """create list of ten stations with higher latest level"""
     station_list = stations_highest_rel_level(stations, 5)

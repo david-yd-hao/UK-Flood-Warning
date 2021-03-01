@@ -1,7 +1,7 @@
 from floodsystem.Analysis import polyfit
 from floodsystem.datafetcher import fetch_measure_levels
-from floodsystem.flood import stations_highest_rel_level, stations_level_over_threshold
-from datetime import datetime, timedelta
+from floodsystem.flood import stations_level_over_threshold
+from datetime import timedelta
 from floodsystem.stationdata import build_station_list, update_water_levels
 import matplotlib.dates
 
