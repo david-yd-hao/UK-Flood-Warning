@@ -25,7 +25,7 @@ def stations_highest_rel_level(stations, N):
     stations2 = stations_level_over_threshold(stations, 0)
     for i in stations2:
         """create list of station names"""
-        list2.append(i[0])
+        list2.append(i[0].name)
     for i in list2:
         for k in stations:
             """create a list of stations (not just names)"""

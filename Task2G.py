@@ -9,18 +9,25 @@ import matplotlib.dates
 def run():
     stations = build_station_list()
     update_water_levels(stations)
-    high_stations_tuple_list = stations_level_over_threshold(stations, 10)
-    high_stations_list = []
+    high_severe_stations_tuple_list = stations_level_over_threshold(stations, 10)
+    high_severe_stations_list = []
 
     # Creating a List of stations with current level threshold over 10
-    for stations_tuple in high_stations_tuple_list:
-        high_stations_list.append(stations_tuple[0])
+    for stations_tuple in high_severe_stations_tuple_list:
+        high_severe_stations_list.append(stations_tuple[0])
 
+    # Creating list for all towns and stations
+    severe_towns = []
     severe_stations = []
     high_stations = []
+    high_towns = []
+    moderate_stations = []
+    moderate_towns = []
+    low_stations = []
+    low_towns = []
 
-    # Creating Severe List (current level threshold over 10 and rising)
-    for station1 in high_stations_list:
+    # Complete Severe List (current level threshold over 10 and rising)
+    for station1 in high_severe_stations_list:
         dt = 10
         dates, levels = fetch_measure_levels(station1.measure_id, dt=timedelta(days=dt))
 
@@ -35,27 +42,43 @@ def run():
         # check if the polynomial fit is rising
         if poly_tuple[0][dates_float[-1]] - poly_tuple[0][dates_float[0]] >= 0.0:
             severe_stations.append(station1.name)
+            if station1.town not in severe_towns:
+                severe_towns.append(station1.town)
 
-    print("Severe")
-    print(severe_stations)
+    print("Severe Towns")
+    print(severe_towns)
 
-    # Creating High List (current level threshold over 10, excluding Severe)
-    for station in high_stations_list:
-        if station.name not in severe_stations:
-            high_stations.append(station.name)
+    # Complete High List (current level threshold over 10, excluding Severe)
+    for station2 in high_severe_stations_list:
+        if station2.name not in severe_stations:
+            high_stations.append(station2.name)
+            if station2.town not in high_towns:
+                high_towns.append(station2.town)
 
-    print("High")
-    print(high_stations)
+    print("High Towns")
+    print(high_towns)
 
-    # Creating Moderate List (current level threshold over 3, excluding High and Severe)
-    moderate_stations = []
-    stations_tuple_list2 = stations_level_over_threshold(stations, 3)
-    for station in stations_tuple_list2:
-        if station[0] not in high_stations_list:
-            moderate_stations.append(station[0].name)
+    # Complete Moderate List (current level threshold over 3, excluding High and Severe)
+    moderate_stations_tuple_list = stations_level_over_threshold(stations, 3)
+    for station3 in moderate_stations_tuple_list:
+        if station3[0] not in high_severe_stations_list:
+            moderate_stations.append(station3[0].name)
+            if station3[0].town not in moderate_towns:
+                moderate_towns.append(station3[0].town)
 
-    print("Moderate")
-    print(moderate_stations)
+    print("Moderate Towns")
+    print(moderate_towns)
+
+    # Complete Low List (current level threshold over 1, excluding High, Severe and Moderate)
+    low_stations_tuple_list3 = stations_level_over_threshold(stations, 1)
+    for station4 in low_stations_tuple_list3:
+        if station4[0] not in high_severe_stations_list and station4[0] not in moderate_stations:
+            low_stations.append(station4[0].name)
+            if station4[0].town not in severe_stations and station4[0].town not in high_towns and station4[0].town not in moderate_towns and station4[0].town not in low_towns:
+                low_towns.append(station4[0].town)
+
+    print("Low Towns")
+    print(low_towns)
 
 
 run()
