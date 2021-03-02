@@ -58,8 +58,8 @@ def run():
     print("High Towns")
     print(high_towns)
 
-    # Complete Moderate List (current level threshold over 3, excluding High and Severe)
-    moderate_stations_tuple_list = stations_level_over_threshold(stations, 3)
+    # Complete Moderate List (current level threshold over 4, excluding High and Severe)
+    moderate_stations_tuple_list = stations_level_over_threshold(stations, 4)
     for station3 in moderate_stations_tuple_list:
         if station3[0] not in high_severe_stations_list:
             moderate_stations.append(station3[0].name)
@@ -69,13 +69,14 @@ def run():
     print("Moderate Towns")
     print(moderate_towns)
 
-    # Complete Low List (current level threshold over 1, excluding High, Severe and Moderate)
-    low_stations_tuple_list3 = stations_level_over_threshold(stations, 1)
+    # Complete Low List (current level threshold over 2, excluding High, Severe and Moderate)
+    low_stations_tuple_list3 = stations_level_over_threshold(stations, 2)
     for station4 in low_stations_tuple_list3:
         if station4[0] not in high_severe_stations_list and station4[0] not in moderate_stations:
             low_stations.append(station4[0].name)
-            if station4[0].town not in severe_stations and station4[0].town not in high_towns and station4[0].town not in moderate_towns and station4[0].town not in low_towns:
-                low_towns.append(station4[0].town)
+            if station4[0].town not in severe_stations and station4[0].town not in high_towns:
+                if station4[0].town not in moderate_towns and station4[0].town not in low_towns:
+                    low_towns.append(station4[0].town)
 
     print("Low Towns")
     print(low_towns)
