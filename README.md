@@ -1,8 +1,6 @@
-# CUED Part IA Flood Warning System
+# UK Flood Warning System
 
-This is the Part IA Lent Term computing activity at the Department of
-Engineering, University of Cambridge.
+This is a flood warning system capturing data from almost 2000 monitoring stations in UK based on the Department for Environment Food and Rural Affairs data service. The data are analyzed to assess the risks, and flood warnings are issued for different areas in UK
 
-The activity is documented at
-https://cued-partia-flood-warning.readthedocs.io/. Fork this repository
-to start the activity.
+This is a flood system based on the Part IA Lent Term computing activity at the Department of
+Engineering, University of Cambridge. The activity is documented at https://cued-partia-flood-warning.readthedocs.io/.
